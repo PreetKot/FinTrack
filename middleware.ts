@@ -1,20 +1,14 @@
-import { authMiddleware } from "@clerk/nextjs";
+// Temporarily disable middleware to isolate the issue
+// This will allow all routes to be accessed without authentication
+// Only use this for debugging purposes
 
-export default authMiddleware({
-  // Routes that can be accessed while signed out
-  publicRoutes: [
-    "/",
-    "/api/webhook(.*)",
-    "/api/webhooks(.*)",
-  ],
-  // Routes that are completely ignored by the auth middleware
-  ignoredRoutes: [
-    "/api/webhook(.*)",
-    "/api/webhooks(.*)",
-    "/((?!api|trpc))(_next|.+\\..+)(.*)",
-  ],
-});
+import { NextResponse } from 'next/server';
+
+export function middleware(request) {
+  // For now, just pass through all requests
+  return NextResponse.next();
+}
 
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.*\\..*).*)", "/"],
 };
