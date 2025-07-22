@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 function DashboardLayout({ children }) {
   const { user } = useUser();
   const router = useRouter();
+  
   useEffect(() => {
     user && checkUserBudgets();
   }, [user]);
@@ -25,14 +26,22 @@ function DashboardLayout({ children }) {
       router.replace("/dashboard/budgets");
     }
   };
+
   return (
-    <div>
-      <div className="fixed md:w-64 hidden md:block ">
+    <div className="flex h-screen bg-gray-50">
+      {/* Desktop Sidebar */}
+      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
         <SideNav />
       </div>
-      <div className="md:ml-64 ">
+      
+      {/* Main Content */}
+      <div className="flex flex-col flex-1 md:pl-64">
         <DashboardHeader />
-        {children}
+        <main
+          className="flex-1 overflow-auto custom-scrollbar"
+        >
+          {children}
+        </main>
       </div>
     </div>
   );

@@ -78,34 +78,45 @@ function Dashboard() {
   };
 
   return (
-    <div className="p-8 bg-">
-      <h2 className="font-bold text-4xl">Hi, {user?.fullName} 👋</h2>
-      <p className="text-gray-500">
-        Here's what happenning with your money, Lets Manage your expense
-      </p>
+    <div className="p-8 bg-gradient-to-br from-blue-50/50 to-white min-h-screen">
+      <div className="mb-8">
+        <h2 className="font-bold text-4xl text-gray-900 mb-2">
+          Hi, {user?.fullName} 👋
+        </h2>
+        <p className="text-gray-600 text-lg">
+          Here's what's happening with your money. Let's manage your expenses smartly.
+        </p>
+      </div>
 
       <CardInfo budgetList={budgetList} incomeList={incomeList} />
-      <div className="grid grid-cols-1 lg:grid-cols-3 mt-6 gap-5">
-        <div className="lg:col-span-2">
+      
+      <div className="grid grid-cols-1 lg:grid-cols-3 mt-8 gap-8">
+        <div className="lg:col-span-2 space-y-8">
           <BarChartDashboard budgetList={budgetList} />
-
           <ExpenseListTable
             expensesList={expensesList}
             refreshData={() => getBudgetList()}
           />
         </div>
-        <div className="grid gap-5">
-          <h2 className="font-bold text-lg">Latest Budgets</h2>
-          {budgetList?.length > 0
-            ? budgetList.map((budget, index) => (
-                <BudgetItem budget={budget} key={index} />
-              ))
-            : [1, 2, 3, 4].map((item, index) => (
-                <div
-                  className="h-[180xp] w-full
-                 bg-slate-200 rounded-lg animate-pulse"
-                ></div>
-              ))}
+        <div className="space-y-6">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200/50 p-6">
+            <h2 className="font-bold text-xl text-gray-900 mb-6 flex items-center">
+              <span className="w-2 h-6 bg-gradient-to-t from-blue-500 to-purple-600 rounded-full mr-3"></span>
+              Latest Budgets
+            </h2>
+            <div className="space-y-4">
+              {budgetList?.length > 0
+                ? budgetList.map((budget, index) => (
+                    <BudgetItem budget={budget} key={index} />
+                  ))
+                : [1, 2, 3, 4].map((item, index) => (
+                    <div
+                      key={index}
+                      className="h-[180px] w-full bg-gradient-to-r from-gray-200 to-gray-100 rounded-xl animate-pulse"
+                    ></div>
+                  ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
