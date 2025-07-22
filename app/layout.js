@@ -3,6 +3,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "next-themes";
+import "@/lib/env-validation"; // Validate environment variables
 
 const outfit = Outfit({ 
   subsets: ["latin"],
