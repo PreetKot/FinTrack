@@ -239,12 +239,6 @@ git push origin feature/amazing-feature
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 🎯 Roadmap
 
 ### Phase 1 ✅
